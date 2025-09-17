@@ -12,7 +12,7 @@ $published = array_values(array_filter($articles, fn($a) => $a['published'] ?? f
 
 function slugify(string $title):string{
    $slug = strtolower($title);
-   $slug = preg_replace('/[^a-z0-9]+/i','-',$title);
+   $slug = preg_replace('/[^a-z0-9]+/i','-',$slug);
   return trim($slug, '-');
 };
 
