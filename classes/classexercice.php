@@ -1,6 +1,16 @@
 <?php
 declare(strict_types=1);
 
+
+
+$Data = [
+    'id' => 5,
+    'name' => 'adnane',
+    'email' => 'adnane@gmail.com',
+    'bio' => 'Développeur PHP',
+    'articlesCount' => 12
+];
+
 class User {
     public function __construct(
         public int $id,
@@ -42,3 +52,10 @@ class UserFactory {
         return new User($id, $name, $email, $bio, $count);
     }
 }
+
+
+$user =UserFactory::fromArray($Data);
+
+print_r($user -> toArray());
+
+echo"Initials" . $user-> initials() .PHP_EOL;
