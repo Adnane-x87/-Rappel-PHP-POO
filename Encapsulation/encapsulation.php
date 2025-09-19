@@ -15,7 +15,7 @@ class Article {
     $this->setTitle($title);
     $this->tags = $tags;
     self::$count++;
-  }
+  }  
 
   /** Usine avec LSB : retournera la sous-classe correcte si appelée depuis elle */
   public static function fromTitle(int $id, string $title): static {
@@ -49,6 +49,16 @@ class Article {
     $s = preg_replace('/[^a-z0-9]+/i', '-', $s) ?? '';
     return trim($s, '-');
   }
+
+  public function toArray(): array {
+    return [
+        'id'    => $this->id,
+        'title' => $this->title,
+        'slug'  => $this->slug,
+        'tags'  => $this->tags,
+    ];
+}
+
 }
 
 /** Sous-classe : spécialisation via `protected` et LSB */
@@ -59,7 +69,8 @@ class FeaturedArticle extends Article {
 }
 
 // Démo
-$a = Article::fromTitle(1, 'Encapsulation & visibilité en PHP');
+$a = Article::fromTitle(1, "Test Encapsulation");
+
 $b = FeaturedArticle::fromTitle(2, 'Lire moins, comprendre plus');
 $b->addTag('best');
 
